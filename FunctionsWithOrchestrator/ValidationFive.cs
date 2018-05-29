@@ -5,22 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json.Linq;
 
 namespace FunctionsWithOrchestrator
 {
-    public static class ValidationOne
+    public static class ValidationFive
     {
-        [FunctionName("ValidationOne")]
+        [FunctionName("ValidationFive")]
         public static async Task<string> Run([ActivityTrigger] Documento doc)
         {
-            if (doc.Authority.ToString() == "stamped")
+            // await Task.Delay(5000);
+            if (doc.documentDetails.Info == true)
             {
-                return "ValidationOne Passed the authority is marked 'stamped' ";
+                return "ValidationFive Passed 'Info' is true";
             }
             else
             {
-                return "ValidationOne Falied... the authority is not marked 'stamped'.";
+                return "ValidationFive Falied info is not true";
             }
 
         }

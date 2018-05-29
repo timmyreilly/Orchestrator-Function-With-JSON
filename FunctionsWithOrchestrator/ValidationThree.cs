@@ -5,24 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Newtonsoft.Json.Linq;
 
 namespace FunctionsWithOrchestrator
 {
-    public static class ValidationOne
+    public static class ValidationThree
     {
-        [FunctionName("ValidationOne")]
+        [FunctionName("ValidationThree")]
         public static async Task<string> Run([ActivityTrigger] Documento doc)
         {
-            if (doc.Authority.ToString() == "stamped")
+            await Task.Delay(5000);
+            if (doc.documentDetails.Type % 2 == 0 )
             {
-                return "ValidationOne Passed the authority is marked 'stamped' ";
+                return "ValidationThree Passed details type is even";
             }
             else
             {
-                return "ValidationOne Falied... the authority is not marked 'stamped'.";
+                return "ValidationThree Falied details type is not even";
             }
 
         }
     }
+
 }

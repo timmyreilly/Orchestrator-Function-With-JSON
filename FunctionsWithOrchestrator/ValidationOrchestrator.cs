@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace FunctionsWithOrchestrator
@@ -19,8 +20,15 @@ namespace FunctionsWithOrchestrator
 
             var ValidateMe = context.GetInput<string>();
             JObject stuff = JObject.Parse(ValidateMe);
+            Documento doc = JsonConvert.DeserializeObject<Documento>(ValidateMe); 
 
-            outputs.Add(await context.CallActivityAsync<string>("ValidationOne", stuff));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationOne", doc));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationTwo", doc));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationThree", doc));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationFour", doc));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationFive", doc));
+            outputs.Add(await context.CallActivityAsync<string>("ValidationSix", doc));
+
             outputs.Add(ValidateMe);
             return outputs;
         }
