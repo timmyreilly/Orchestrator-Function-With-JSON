@@ -1,0 +1,12 @@
+﻿{
+  "DocumentDetails": {
+    "Name": "Tim",
+    "Info": "true",
+    "Type": 1
+  },
+
+  "Signature": "timmyreilly",
+  "SignatureTwo": "timmyreilly",
+  "Authority": "stamped",
+  "Version": 123
+}
